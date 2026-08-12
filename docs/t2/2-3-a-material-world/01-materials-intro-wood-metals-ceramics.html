@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Materials intro: wood, metals, ceramics, plastics, composites — IED 2026–27</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+  :root {
+    --bg:#0c1424; --panel:#14203a; --panel-2:#1b2c4d; --line:#2a3c5e;
+    --ink:#e9eff8; --ink-soft:#9db0d0; --ink-mute:#6c7fa3;
+    --accent:#36d6e0; --amber:#f2c14e; --radius:14px; --maxw:880px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"DM Sans", system-ui, sans-serif; font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:24px 20px 56px; }
+  h1,h2,h3 { line-height:1.25; margin:0; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  code {
+    font-family:"Space Mono", monospace; background:rgba(54,214,224,0.10);
+    color:var(--accent); padding:1px 5px; border-radius:4px; font-size:0.9em;
+  }
+
+  /* Site navigation (home / trimester / unit / lesson pages all share this) */
+  .site-nav {
+    display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px; padding-bottom:14px;
+    border-bottom:1px solid var(--line); font-family:"Space Mono",monospace; font-size:13px;
+  }
+  .site-nav a { color:var(--ink-mute); }
+  .site-nav a:hover, .site-nav a.active { color:var(--accent); }
+  .breadcrumb { font-family:"Space Mono",monospace; font-size:12px; color:var(--ink-mute); margin-bottom:16px; }
+  .breadcrumb a { color:var(--ink-mute); }
+  .breadcrumb a:hover { color:var(--accent); }
+  .sub { color:var(--ink-mute); font-size:15px; margin:0 0 24px; }
+  .tri-badge {
+    display:inline-block; font-family:"Space Mono",monospace; font-size:11px;
+    background:rgba(54,214,224,.12); border:1px solid var(--accent); color:var(--accent);
+    border-radius:999px; padding:3px 10px; letter-spacing:.06em; margin-bottom:10px;
+  }
+
+  /* Card grids — home page trimesters, trimester page units */
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin:22px 0 28px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; transition:border-color .15s; }
+  .card:hover { border-color:var(--accent); }
+  .card .num { font-family:"Space Mono",monospace; font-size:12px; color:var(--ink-mute); margin-bottom:6px; }
+  .card .title { font-size:17px; font-weight:700; margin-bottom:6px; }
+  .card .meta { font-size:13.5px; color:var(--ink-mute); }
+
+  /* Session lists on unit pages */
+  .sessions { list-style:none; margin:0; padding:0; }
+  .sessions > li { border-bottom:1px solid var(--line); padding:14px 0; }
+  .sessions > li:last-child { border-bottom:none; }
+  .sessions .when { font-family:"Space Mono",monospace; font-size:12.5px; color:var(--accent); letter-spacing:.04em; }
+  .sessions .topic { display:block; margin:4px 0 5px; font-size:16.5px; }
+  .sessions .eq-line { display:block; font-size:14px; color:var(--ink-soft); font-style:italic; }
+  .sessions li.ct { background:rgba(242,193,78,.06); border-left:3px solid var(--amber); padding-left:14px; border-radius:0 8px 8px 0; }
+  .sessions li.ct .when { color:var(--amber); }
+  .break-note {
+    font-family:"Space Mono",monospace; font-size:12.5px; color:var(--ink-mute);
+    border-left:2px dashed var(--line); padding:8px 0 8px 14px; margin:6px 0;
+  }
+
+  /* Region scaffolding — lesson pages */
+  .region { margin-top:22px; }
+  .region-label {
+    font-family:"Space Mono", monospace; font-size:12px; letter-spacing:0.14em;
+    color:var(--ink-mute); text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  }
+  .region-label .num { color:var(--accent); }
+  .region-label .rule { flex:1; height:1px; background:var(--line); }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+
+  /* 01 Orientation */
+  .orient { background:linear-gradient(180deg, var(--panel-2), var(--panel)); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .code { font-family:"Space Mono", monospace; font-weight:700; color:var(--accent); font-size:14px; letter-spacing:0.06em; }
+  .orient h1 { font-size:30px; font-weight:700; margin:8px 0 14px; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip {
+    font-family:"Space Mono", monospace; font-size:12px; letter-spacing:0.04em; color:var(--ink-soft);
+    background:rgba(54,214,224,0.08); border:1px solid var(--line); border-radius:999px; padding:5px 11px;
+  }
+  .chip.big { color:var(--accent); border-color:var(--accent); }
+  .chip.ct { color:var(--amber); border-color:var(--amber); background:rgba(242,193,78,0.08); }
+
+  /* 02 Essential question */
+  .eq { font-size:20px; font-weight:500; margin:0; line-height:1.45; }
+  .eq-mark { font-family:"Space Mono",monospace; color:var(--accent); margin-right:8px; }
+
+  .eq-plain {
+    margin:14px 0 0; padding:13px 16px; font-size:16px; color:var(--ink-soft); line-height:1.55;
+    background:rgba(242,193,78,.07); border-left:3px solid var(--amber); border-radius:0 8px 8px 0;
+  }
+
+  /* Vocabulary */
+  .vocab-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:12px; }
+  .term { background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:14px 14px 15px; }
+  .term .word { font-family:"Space Mono", monospace; font-weight:700; color:var(--accent); font-size:15px; display:block; margin-bottom:5px; }
+  .term .def { font-size:14.5px; color:var(--ink-soft); display:block; line-height:1.5; }
+
+  /* 03 Learning target */
+  .target { font-size:15px; color:var(--ink-soft); margin:0 0 10px; }
+  .objective { font-size:17.5px; margin:0; }
+
+  /* 04 What you'll produce */
+  .produce-lead { font-size:15px; color:var(--ink-soft); margin:0 0 12px; }
+  ol.produce { list-style:none; counter-reset:s; margin:0; padding:0; }
+  ol.produce > li { counter-increment:s; position:relative; padding:0 0 14px 42px; margin:0; }
+  ol.produce > li:last-child { padding-bottom:0; }
+  ol.produce > li::before {
+    content:counter(s); position:absolute; left:0; top:-1px; width:28px; height:28px;
+    font-family:"Space Mono", monospace; font-weight:700; font-size:13px;
+    color:var(--bg); background:var(--accent); border-radius:8px; display:grid; place-items:center;
+  }
+
+  ul.produce-ul { list-style:none; margin:0 0 6px; padding:0; }
+  ul.produce-ul li { position:relative; padding:0 0 9px 22px; font-size:16px; }
+  ul.produce-ul li::before { content:"▸"; position:absolute; left:2px; color:var(--accent); }
+  .panel > .field-label:not(:first-child) { margin-top:18px; }
+  .panel p + p { margin-top:12px; }
+
+  /* 05 Skill & competencies */
+  .skill-name { font-family:"Space Mono",monospace; font-size:15px; color:var(--accent); font-weight:700; }
+  .ks-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+  .ks { font-family:"Space Mono",monospace; font-size:12px; color:var(--ink-soft); background:var(--panel-2); border:1px solid var(--line); border-radius:6px; padding:4px 9px; }
+  .field-label { font-family:"Space Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); display:block; margin-bottom:6px; }
+
+  /* Competency key + rubric list (unit pages) */
+  details.key { margin-top:26px; border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); padding:14px 18px; }
+  details.key summary { cursor:pointer; font-family:"Space Mono",monospace; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mute); }
+  details.key summary:hover { color:var(--accent); }
+  details.key table { width:100%; border-collapse:collapse; margin-top:14px; font-size:14.5px; }
+  details.key td { padding:6px 10px 6px 0; border-bottom:1px solid var(--line); color:var(--ink-soft); }
+  details.key td:first-child { font-family:"Space Mono",monospace; color:var(--accent); width:80px; white-space:nowrap; }
+  .rubric-list { list-style:none; margin:0; padding:0; }
+  .rubric-list li { padding:9px 0; border-bottom:1px solid var(--line); font-size:15px; color:var(--ink-soft); }
+  .rubric-list li:last-child { border-bottom:none; }
+  .rubric-list .lg { font-family:"Space Mono",monospace; font-size:12.5px; color:var(--accent); margin-right:10px; }
+  .note { font-size:13.5px; color:var(--ink-mute); margin-top:14px; }
+
+  .pager { display:flex; justify-content:space-between; gap:14px; margin-top:34px; padding-top:16px; border-top:1px solid var(--line); font-family:"Space Mono",monospace; font-size:13px; }
+
+  @media (max-width:480px) { .orient h1 { font-size:24px; } body { font-size:16px; } .eq { font-size:18px; } }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav"><a href="../../index.html">Home</a><a href="../../t1/index.html">Trimester 1</a><a href="../../t2/index.html">Trimester 2</a><a href="../../t3/index.html">Trimester 3</a></nav>
+
+  <div class="breadcrumb">
+    <a href="../../index.html">Home</a> ›
+    <a href="../index.html">Trimester 2</a> ›
+    <a href="index.html">Lesson 2.3</a>
+  </div>
+
+  <header class="orient">
+    <div class="code">PLTW 2.3.1 &nbsp;·&nbsp; Lesson 2.3 — A Material World</div>
+    <h1>Materials intro: wood, metals, ceramics, plastics, composites</h1>
+    <div class="meta">
+      <span class="chip big">Class 1 of 6</span>
+    </div>
+    <p class="sub" style="margin:10px 0 0">Properties that drive selection</p>
+  </header>
+  <section class="region">
+    <div class="region-label"><span class="num">02</span> Today's question <span class="rule"></span></div>
+    <div class="panel">
+      <p class="eq"><span class="eq-mark">?</span>How do you determine the properties of a material?</p><p class="eq-plain">In other words, you find out what a material can do by testing it, not by guessing from how it looks.</p>
+    </div>
+  </section>
+  <section class="region">
+    <div class="region-label"><span class="num">03</span> Words for today <span class="rule"></span></div>
+    <div class="panel">
+      <div class="vocab-grid">
+        <div class="term"><span class="word">material family</span><span class="def">One of the broad groups materials fall into: metals, polymers, ceramics, composites, wood.</span></div>
+        <div class="term"><span class="word">tensile strength</span><span class="def">How much pulling force a material can take before it breaks.</span></div>
+        <div class="term"><span class="word">hardness</span><span class="def">How well a material resists being scratched or dented.</span></div>
+        <div class="term"><span class="word">density</span><span class="def">How much mass is packed into a given amount of space.</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="region">
+    <div class="region-label"><span class="num">04</span> Learning target <span class="rule"></span></div>
+    <div class="panel">
+      <p class="target">By the end of today you will be able to:</p><p class="objective">Identify the five material families and your defining engineering properties (tensile strength, hardness, ductility, thermal/electrical conductivity, density, cost, machinability), then sort candidate materials by property to support a criteria-based selection decision.</p>
+    </div>
+  </section>
+  <section class="region">
+    <div class="region-label"><span class="num">05</span> What you'll produce <span class="rule"></span></div>
+    <div class="panel">
+      <p>By the end of class, you&#x27;ll have a completed <strong>Material Property Reference Chart</strong> — a single-page table listing ≥10 materials (at least 2 from each family), with approximate values for tensile strength, hardness (qualitative scale), ductility (qualitative), density, electrical conductivity, and relative cost. The chart is legible, uses consistent units, and will be kept as a reference tool for the remainder of the unit.</p>
+    </div>
+  </section>
+  <section class="region">
+    <div class="region-label"><span class="num">06</span> Skill &amp; competencies <span class="rule"></span></div>
+    <div class="panel">
+      <span class="field-label">Transferable skill</span><span class="skill-name">Critical Thinking</span><div class="ks-row"><span class="ks">ETT-C.1</span><span class="ks">ETT-C.2</span><span class="ks">COM-A.1</span></div>
+    </div>
+  </section>
+  <div class="pager"><a href="../2-2-take-it-apart/08-present-reverse-engineered-product-documentation-and.html">← Present reverse-engineered product documentation and printed accessory</a><a href="02-non-destructive-material-property-experiments-hardness.html">Non-destructive material property experiments: hardness, flexure, conductivity →</a></div>
+</div>
+</body>
+</html>

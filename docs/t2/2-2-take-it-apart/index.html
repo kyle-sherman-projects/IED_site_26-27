@@ -94,6 +94,17 @@
   .eq { font-size:20px; font-weight:500; margin:0; line-height:1.45; }
   .eq-mark { font-family:"Space Mono",monospace; color:var(--accent); margin-right:8px; }
 
+  .eq-plain {
+    margin:14px 0 0; padding:13px 16px; font-size:16px; color:var(--ink-soft); line-height:1.55;
+    background:rgba(242,193,78,.07); border-left:3px solid var(--amber); border-radius:0 8px 8px 0;
+  }
+
+  /* Vocabulary */
+  .vocab-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:12px; }
+  .term { background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:14px 14px 15px; }
+  .term .word { font-family:"Space Mono", monospace; font-weight:700; color:var(--accent); font-size:15px; display:block; margin-bottom:5px; }
+  .term .def { font-size:14.5px; color:var(--ink-soft); display:block; line-height:1.5; }
+
   /* 03 Learning target */
   .target { font-size:15px; color:var(--ink-soft); margin:0 0 10px; }
   .objective { font-size:17.5px; margin:0; }
@@ -151,47 +162,47 @@
   </div>
   <span class="tri-badge">Lesson 2.2</span>
   <h1>Take It Apart</h1>
-  <p class="sub">8 class days · APB 2.2.1–2.2.8</p>
+  <p class="sub">8 classes · APB 2.2.1–2.2.8</p>
   <ul class="sessions">
     <li>
-      <span class="when">Wed, Dec 16 · Day C · 45 min · PLTW 2.2.1</span>
-      <span class="topic"><a href="1216-reverse-engineering-intro-purposes-process.html">Reverse engineering intro: purposes, process, visual/functional/structural analysis framework</a></span>
+      <span class="when">Class 1 · PLTW 2.2.1</span>
+      <span class="topic"><a href="01-reverse-engineering-intro-purposes-process.html">Reverse engineering intro: purposes, process, visual/functional/structural analysis framework</a></span>
       <span class="eq-line">Why is reverse engineering done?</span>
     </li>
     <li>
-      <span class="when">Thu, Dec 17 · Day A · 80 min · PLTW 2.2.2</span>
-      <span class="topic"><a href="1217-disassemble-and-document-a-consumer.html">Disassemble and document a consumer product: visual, functional, and structural analysis</a></span>
+      <span class="when">Class 2 · PLTW 2.2.2</span>
+      <span class="topic"><a href="02-disassemble-and-document-a-consumer.html">Disassemble and document a consumer product: visual, functional, and structural analysis</a></span>
       <span class="eq-line">How is information gathered through product disassembly?</span>
     </li>
     <li class="break-note">Winter Break: 12/20 – 1/2</li>
     <li>
-      <span class="when">Mon, Jan 4 · Day A · 80 min · PLTW 2.2.3</span>
-      <span class="topic"><a href="0104-top-down-cad-assembly-modeling-intro.html">Top-down CAD assembly modeling intro; model the reverse-engineered product in CAD</a></span>
+      <span class="when">Class 3 · PLTW 2.2.3</span>
+      <span class="topic"><a href="03-top-down-cad-assembly-modeling-intro.html">Top-down CAD assembly modeling intro; model the reverse-engineered product in CAD</a></span>
       <span class="eq-line">Why is reverse engineering done?</span>
     </li>
     <li>
-      <span class="when">Wed, Jan 6 · Day C · 45 min · PLTW 2.2.4</span>
-      <span class="topic"><a href="0106-cad-top-down-assembly-refinement.html">CAD top-down assembly refinement; identify abstraction and limitations of the model</a></span>
+      <span class="when">Class 4 · PLTW 2.2.4</span>
+      <span class="topic"><a href="04-cad-top-down-assembly-refinement.html">CAD top-down assembly refinement; identify abstraction and limitations of the model</a></span>
       <span class="eq-line">How is information gathered through product disassembly?</span>
     </li>
     <li>
-      <span class="when">Thu, Jan 7 · Day A · 80 min · PLTW 2.2.5</span>
-      <span class="topic"><a href="0107-dfm-dfa-case-study-analyze.html">DFM/DFA case study: analyze a consumer product for manufacturability and ease of assembly</a></span>
+      <span class="when">Class 5 · PLTW 2.2.5</span>
+      <span class="topic"><a href="05-dfm-dfa-case-study-analyze.html">DFM/DFA case study: analyze a consumer product for manufacturability and ease of assembly</a></span>
       <span class="eq-line">Why are many consumer product designs not commercially successful?</span>
     </li>
     <li>
-      <span class="when">Mon, Jan 11 · Day A · 80 min · PLTW 2.2.6</span>
-      <span class="topic"><a href="0111-design-integrated-accessory-for-reverse-engineered.html">Design integrated accessory for reverse-engineered product; concept sketches and CAD</a></span>
+      <span class="when">Class 6 · PLTW 2.2.6</span>
+      <span class="topic"><a href="06-design-integrated-accessory-for-reverse-engineered.html">Design integrated accessory for reverse-engineered product; concept sketches and CAD</a></span>
       <span class="eq-line">When is it acceptable for a company to reverse engineer a product designed by another?</span>
     </li>
     <li>
-      <span class="when">Wed, Jan 13 · Day C · 45 min · PLTW 2.2.7</span>
-      <span class="topic"><a href="0113-refine-accessory-cad.html">Refine accessory CAD; apply DFM principles; prepare 3D print file</a></span>
+      <span class="when">Class 7 · PLTW 2.2.7</span>
+      <span class="topic"><a href="07-refine-accessory-cad.html">Refine accessory CAD; apply DFM principles; prepare 3D print file</a></span>
       <span class="eq-line">Why are many consumer product designs not commercially successful?</span>
     </li>
     <li>
-      <span class="when">Thu, Jan 14 · Day A · 80 min · PLTW 2.2.8</span>
-      <span class="topic"><a href="0114-present-reverse-engineered-product-documentation-and.html">Present reverse-engineered product documentation and printed accessory; peer feedback</a></span>
+      <span class="when">Class 8 · PLTW 2.2.8</span>
+      <span class="topic"><a href="08-present-reverse-engineered-product-documentation-and.html">Present reverse-engineered product documentation and printed accessory; peer feedback</a></span>
       <span class="eq-line">When is it acceptable for a company to reverse engineer a product designed by another?</span>
     </li>
   </ul>
