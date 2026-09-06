@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>**PENDING VERIFICATION** — Putting It Together: bottom-up CAD assembly modeling — IED 2026–27</title>
+  <title>Putting It Together: degrees of freedom — IED 2026–27</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,11 +163,11 @@
 
   <header class="orient">
     <div class="code">PLTW 2.1.3 &nbsp;·&nbsp; Lesson 2.1 — Put It Together</div>
-    <h1><strong>PENDING VERIFICATION</strong> — Putting It Together: bottom-up CAD assembly modeling</h1>
+    <h1>Putting It Together: degrees of freedom</h1>
     <div class="meta">
       <span class="chip big">Class 4 of 7</span>
     </div>
-    <p class="sub" style="margin:10px 0 0">Joints and constraints between parts</p>
+    <p class="sub" style="margin:10px 0 0">Bottom-up CAD assembly of construction blocks and a selfie stick kit; joints (rigid, revolute) and a real McMaster-Carr part</p>
   </header>
   <section class="region">
     <div class="region-label"><span class="num">02</span> Today's question <span class="rule"></span></div>
@@ -179,23 +179,23 @@
     <div class="region-label"><span class="num">03</span> Words for today <span class="rule"></span></div>
     <div class="panel">
       <div class="vocab-grid">
+        <div class="term"><span class="word">degree of freedom</span><span class="def">One independent way a rigid object can move — sliding or rotating along one axis. A free object in space has six.</span></div>
         <div class="term"><span class="word">bottom-up assembly</span><span class="def">Modeling each part separately first, then bringing the finished parts together.</span></div>
-        <div class="term"><span class="word">joint</span><span class="def">A defined connection in a CAD assembly that controls how two parts can move relative to each other.</span></div>
+        <div class="term"><span class="word">rigid joint</span><span class="def">A CAD assembly joint that removes all relative motion between two components, fixing them together completely. ---</span></div>
         <div class="term"><span class="word">revolute joint</span><span class="def">A joint that lets one part rotate around a single axis, like a hinge.</span></div>
-        <div class="term"><span class="word">sketch constraint</span><span class="def">A rule locking part of a sketch in place, such as making two lines stay parallel.</span></div>
       </div>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">04</span> Learning target <span class="rule"></span></div>
     <div class="panel">
-      <p class="target">By the end of today you will be able to:</p><p class="objective">Build a bottom-up assembly in Fusion 360 by importing two pre-modeled component files, apply a rigid joint and a revolute joint to constrain the components, and verify that the assembly moves (or is fixed) as intended.</p>
+      <p class="target">By the end of today you will be able to:</p><p class="objective">Identify the six degrees of freedom of a rigid body, build a CAD assembly by grounding one component and applying joints to constrain the relative motion of others, and correctly select joint types (recognizing, for example, that a threaded screw connection is a rigid joint, not a revolute one, once fully seated).</p>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">05</span> What you'll produce <span class="rule"></span></div>
     <div class="panel">
-      <p>By end of class, you&#x27;ll have a saved Fusion 360 assembly file (.f3d or project-linked) containing: (1) two or more component bodies imported or modeled separately, (2) at least one rigid joint applied correctly, (3) at least one revolute joint with the correct axis defined. You&#x27;ll perform a brief &quot;motion check&quot; — dragging the revolving component to confirm it rotates about the correct axis — and record two observations on a sticky note: what is constrained and what is free to move.</p>
+      <p>By end of class, you&#x27;ll have: a CAD assembly recreating your three-block structure from Activity 1.2.2 — one component grounded, the other two attached with Rigid joints so the structure behaves as a single glued unit; and an individually-built CAD assembly of a selfie stick, including the inserted McMaster-Carr Plastic-Head Thumb Screw (part 91185A911) as a real commercial off-the-shelf component, tested by dragging parts to confirm it moves the way your brainstormed joint types predicted.</p>
     </div>
   </section>
   <section class="region">
