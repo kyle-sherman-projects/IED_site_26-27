@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>CAD: generate annotated multiview technical drawing from solid model — IED 2026–27</title>
+  <title>Constraining a sketch (geometric/dimensional constraints, design intent) — IED 2026–27</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -158,53 +158,53 @@
   <div class="breadcrumb">
     <a href="../../index.html">Home</a> ›
     <a href="../index.html">Trimester 1</a> ›
-    <a href="index.html">Lesson 1.2</a>
+    <a href="index.html">Lesson 1.3</a>
   </div>
 
   <header class="orient">
-    <div class="code">PLTW 1.2.3 &nbsp;·&nbsp; Lesson 1.2 — Visualization &amp; Solid Modeling</div>
-    <h1>CAD: generate annotated multiview technical drawing from solid model</h1>
+    <div class="code">PLTW 1.3.3, 1.3.4 &nbsp;·&nbsp; Lesson 1.3 — CAD Fundamentals</div>
+    <h1>Constraining a sketch (geometric/dimensional constraints, design intent)</h1>
     <div class="meta">
       <span class="chip big">Class 3 of 7</span>
     </div>
-    
+    <p class="sub" style="margin:10px 0 0">CAD skill building: polygons and patterns</p>
   </header>
   <section class="region">
     <div class="region-label"><span class="num">02</span> Today's question <span class="rule"></span></div>
     <div class="panel">
-      <p class="eq"><span class="eq-mark">?</span>What advantages does paper and pencil design provide over CAD?</p><p class="eq-plain">In other words, sketching by hand is still faster for getting a rough idea out, even though the computer is better for finishing it.</p>
+      <p class="eq"><span class="eq-mark">?</span>Why do engineers use models? How reliable is a model?</p><p class="eq-plain">In other words, models let engineers test ideas cheaply, but you have to know how far to trust what a model tells you.</p>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">03</span> Words for today <span class="rule"></span></div>
     <div class="panel">
       <div class="vocab-grid">
-        <div class="term"><span class="word">CAD</span><span class="def">Computer-Aided Design — designing a part as a model on a computer instead of on paper.</span></div>
-        <div class="term"><span class="word">solid model</span><span class="def">A 3D computer model that behaves like a solid object, with real volume and material.</span></div>
-        <div class="term"><span class="word">sketch constraint</span><span class="def">A rule locking part of a sketch in place, such as making two lines stay parallel.</span></div>
-        <div class="term"><span class="word">extrude</span><span class="def">Pushing a flat 2D sketch out into the third dimension to make it solid.</span></div>
+        <div class="term"><span class="word">geometric constraint</span><span class="def">A rule (like parallel, tangent, or coincident) that controls how sketch elements relate to each other in CAD.</span></div>
+        <div class="term"><span class="word">dimensional constraint</span><span class="def">A number applied to a CAD sketch element, such as a length or angle, that fixes its size.</span></div>
+        <div class="term"><span class="word">design intent</span><span class="def">The reasoning built into a model, so that it updates the way you meant when something changes.</span></div>
+        <div class="term"><span class="word">pattern</span><span class="def">A CAD tool that creates evenly spaced copies of a feature or sketch element, in a line or a circle.</span></div>
       </div>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">04</span> Learning target <span class="rule"></span></div>
     <div class="panel">
-      <p class="target">By the end of today you will be able to:</p><p class="objective">Generate a multiview technical drawing from a Fusion 360 solid model and apply ASME-standard dimensions so that all part features are fully defined without reference to the 3D model.</p>
+      <p class="target">By the end of today you will be able to:</p><p class="objective">Apply geometric and dimensional constraints to fully constrain a CAD sketch so its geometry behaves predictably, and use polygon, pattern (circular/rectangular), and geometry-projection tools to model more complex sketch profiles efficiently.</p>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">05</span> What you'll produce <span class="rule"></span></div>
     <div class="panel">
-      <p>You export and submit a Fusion 360 Drawing file (.f3d or exported PDF) containing: a minimum of three orthographic views of your block model, all views projected correctly with visible and hidden line display, and complete ASME-standard dimensions covering every feature (overall length/width/height, hole diameter, hole position). No feature is left undimensioned. The drawing includes a title block populated with part name, student name, date, and scale. This is the LG3-A#2 assessment submission.</p>
+      <p>By end of class, you&#x27;ll have: a fully constrained sketch (verified by dragging every element and confirming nothing moves) built from an unconstrained concave polygon using geometric constraints (parallel, tangent, coincident, symmetry, construction lines) plus dimensional constraints reflecting a specified design intent; and a flat-plate sketch using circumscribed/inscribed polygons, at least one circular and one rectangular pattern, and projected geometry from an existing sketch plane, extruded into a solid.</p>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">06</span> Skill &amp; competencies <span class="rule"></span></div>
     <div class="panel">
-      <span class="field-label">Transferable skill</span><span class="skill-name">Technical Proficiency</span><div class="ks-row"><span class="ks">MOD-F.1</span><span class="ks">MOD-F.2</span></div>
+      <span class="field-label">Transferable skill</span><span class="skill-name">Technical Proficiency</span><div class="ks-row"><span class="ks">MOD-E.1</span><span class="ks">MOD-E.2</span></div>
     </div>
   </section>
-  <div class="pager"><a href="02-intro-to-cad.html">← Intro to CAD</a><a href="04-dimensioning-standards-and-guidelines.html">Dimensioning standards and guidelines →</a></div>
+  <div class="pager"><a href="02-making-holes-in-cad-hole.html">← Making Holes in CAD: hole types and hole notes</a><a href="04-cad-modeling-skills-model-an.html">CAD modeling skills: model an injection-molded case using tapered extrusions, Loft, Shell, and a hole pattern →</a></div>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Advanced CAD: multi-feature solid models — IED 2026–27</title>
+  <title>CAD-generated multiview drawings — IED 2026–27</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -158,60 +158,53 @@
   <div class="breadcrumb">
     <a href="../../index.html">Home</a> ›
     <a href="../index.html">Trimester 1</a> ›
-    <a href="index.html">Lesson 1.3</a>
+    <a href="index.html">Lesson 1.2</a>
   </div>
 
   <header class="orient">
-    <div class="code">PLTW 1.3.3 &nbsp;·&nbsp; Lesson 1.3 — CAD Fundamentals</div>
-    <h1>Advanced CAD: multi-feature solid models</h1>
+    <div class="code">PLTW 1.2.3, 1.2.4 &nbsp;·&nbsp; Lesson 1.2 — Visualization &amp; Solid Modeling</div>
+    <h1>CAD-generated multiview drawings</h1>
     <div class="meta">
-      <span class="chip big">Class 3 of 7</span>
+      <span class="chip big">Class 4 of 7</span>
     </div>
-    <p class="sub" style="margin:10px 0 0">Sketch constraints; feature relationships</p>
+    <p class="sub" style="margin:10px 0 0">Multiview Structure Cards; begin the Dimensioning Flowchart</p>
   </header>
   <section class="region">
     <div class="region-label"><span class="num">02</span> Today's question <span class="rule"></span></div>
     <div class="panel">
-      <p class="eq"><span class="eq-mark">?</span>Why do engineers use models? How reliable is a model?</p><p class="eq-plain">In other words, models let engineers test ideas cheaply, but you have to know how far to trust what a model tells you.</p>
+      <p class="eq"><span class="eq-mark">?</span>What advantages does Computer-Aided Design (CAD) provide over traditional paper and pencil design?</p><p class="eq-plain">In other words, designing on a computer lets you change, measure, and reuse a model in ways paper never could.</p>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">03</span> Words for today <span class="rule"></span></div>
     <div class="panel">
       <div class="vocab-grid">
-        <div class="term"><span class="word">feature</span><span class="def">One modeling operation that changes the shape — an extrude, a cut, a hole, a fillet.</span></div>
-        <div class="term"><span class="word">sketch constraint</span><span class="def">A rule locking part of a sketch in place, such as making two lines stay parallel.</span></div>
-        <div class="term"><span class="word">fillet</span><span class="def">A rounded inside or outside corner, used to reduce stress or remove a sharp edge.</span></div>
-        <div class="term"><span class="word">chamfer</span><span class="def">A flat angled cut across a corner or edge.</span></div>
+        <div class="term"><span class="word">base view</span><span class="def">The first view placed on a CAD drawing, usually the front view, that other views are projected from.</span></div>
+        <div class="term"><span class="word">projected view</span><span class="def">A view generated from a base view to show the object from a different angle.</span></div>
+        <div class="term"><span class="word">hidden line</span><span class="def">A dashed line on a drawing that represents an edge that isn&#x27;t directly visible from that view.</span></div>
+        <div class="term"><span class="word">dimensioning flowchart</span><span class="def">A step-by-step process for deciding what to dimension on a drawing so every feature is fully described.</span></div>
       </div>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">04</span> Learning target <span class="rule"></span></div>
     <div class="panel">
-      <p class="target">By the end of today you will be able to:</p><p class="objective">Build a multi-feature solid model in Fusion 360 that includes at least three distinct features (extrude, cut, and one of: fillet, chamfer, or hole), with all sketch geometry fully constrained before each feature operation is applied.</p>
+      <p class="target">By the end of today you will be able to:</p><p class="objective">Use CAD software to generate an orthographic multiview drawing from a 3D solid model with correct base/projected views and line styles, and begin applying the Dimensioning Flowchart to identify and locate features on a multiview drawing.</p>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">05</span> What you'll produce <span class="rule"></span></div>
     <div class="panel">
-      <p>By end of class, you&#x27;ll have a saved Fusion 360 file containing the guided multi-feature model (a stepped bracket with a through-hole and fillets — see model spec below). The model must be fully constrained (no blue unconstrained lines visible in any sketch). You&#x27;ll submit the file via the class LMS folder and write a 2-sentence exit slip: &quot;Name one constraint you applied today and explain what it prevents the sketch from doing without it.&quot;</p>
-      <p>The guided model spec (teacher provides reference images):</p>
-      <ul class="produce-ul">
-        <li>Base: 80 mm × 50 mm × 10 mm rectangular extrude</li>
-        <li>Step: 40 mm × 25 mm × 15 mm extrude on top of base (centered on length)</li>
-        <li>Through-hole: 12 mm diameter, centered on the step</li>
-        <li>Fillet: 3 mm radius on all four vertical edges of the base</li>
-      </ul>
+      <p>By end of class, you&#x27;ll have: a CAD multiview drawing (A-size sheet) of a partner-modeled block from Activity 1.2.2, with a correctly chosen base view, at least one projected view, correct hidden-line/centerline display, and peer feedback incorporated; plus a completed Multiview Structure Card exercise (build from a card, sketch a partner&#x27;s built structure, compare to the original). You have also worked through the Dimensioning Cards as a team, identifying features, best views, and beginning to apply the Dimensioning Flowchart steps.</p>
     </div>
   </section>
   <section class="region">
     <div class="region-label"><span class="num">06</span> Skill &amp; competencies <span class="rule"></span></div>
     <div class="panel">
-      <span class="field-label">Transferable skill</span><span class="skill-name">Technical Proficiency</span><div class="ks-row"><span class="ks">MOD-E.2</span><span class="ks">MOD-E.1</span></div>
+      <span class="field-label">Transferable skill</span><span class="skill-name">Technical Proficiency</span><div class="ks-row"><span class="ks">MOD-F.1</span><span class="ks">MOD-F.2</span><span class="ks">MOD-C.4</span></div>
     </div>
   </section>
-  <div class="pager"><a href="02-accuracy-vs-precision.html">← Accuracy vs. precision</a><a href="04-cad-dimensioning.html">CAD dimensioning →</a></div>
+  <div class="pager"><a href="03-multiview-drawings-day-1-sketch.html">← Multiview drawings (Day 1): sketch orthographic projections by hand</a><a href="05-cad-dimensioned-drawings-with-hole-annotations.html">CAD-dimensioned drawings with hole annotations →</a></div>
 </div>
 </body>
 </html>
