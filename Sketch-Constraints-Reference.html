@@ -1,0 +1,689 @@
+<title>Sketch Constraints Reference</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+
+<style>
+/* Layout: color-code header, two-column constraint grid, strategy section, errors section */
+:root {
+  --bg:          #F2F6FB;
+  --surface:     #FFFFFF;
+  --surface-alt: #E8EEF7;
+  --fg:          #192A3B;
+  --fg-2:        #4C6378;
+  --accent:      #175FA0;
+  --accent-pale: #DBE8F6;
+  --amber:       #A05200;
+  --amber-pale:  #FFF0DA;
+  --green:       #1A6638;
+  --green-pale:  #E2F4EC;
+  --rule:        #C8D5E2;
+  /* Sketch color states */
+  --under:       #2A6FD4; /* blue = under-constrained */
+  --under-pale:  #EAF2FD;
+  --full:        #1A2A3B; /* black = fully constrained */
+  --full-pale:   #EDF0F4;
+  --over:        #C0222A; /* red = over-constrained */
+  --over-pale:   #FEF0F0;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:          #0C1A27;
+    --surface:     #132030;
+    --surface-alt: #1A2D3F;
+    --fg:          #DDE8F2;
+    --fg-2:        #7095B4;
+    --accent:      #4BA6DC;
+    --accent-pale: #0B2035;
+    --amber:       #EFA030;
+    --amber-pale:  #221200;
+    --green:       #4CC87A;
+    --green-pale:  #0B2018;
+    --rule:        #1E3348;
+    --under:       #4A90DB;
+    --under-pale:  #0B1D2E;
+    --full:        #C8D8E8;
+    --full-pale:   #1C2C3C;
+    --over:        #E05560;
+    --over-pale:   #280808;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:          #0C1A27;
+  --surface:     #132030;
+  --surface-alt: #1A2D3F;
+  --fg:          #DDE8F2;
+  --fg-2:        #7095B4;
+  --accent:      #4BA6DC;
+  --accent-pale: #0B2035;
+  --amber:       #EFA030;
+  --amber-pale:  #221200;
+  --green:       #4CC87A;
+  --green-pale:  #0B2018;
+  --rule:        #1E3348;
+  --under:       #4A90DB;
+  --under-pale:  #0B1D2E;
+  --full:        #C8D8E8;
+  --full-pale:   #1C2C3C;
+  --over:        #E05560;
+  --over-pale:   #280808;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  margin: 0;
+  padding-block: 2rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.4rem;
+}
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+  margin: 0 0 0.4rem;
+}
+.page-sub {
+  color: var(--fg-2);
+  font-size: 0.9rem;
+  margin: 0 0 1.75rem;
+}
+h2 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  margin: 0 0 0.9rem;
+}
+p { margin: 0 0 0.6rem; font-size: 0.9rem; color: var(--fg-2); }
+p strong { color: var(--fg); font-weight: 600; }
+p:last-child { margin-bottom: 0; }
+
+/* ── Color-state cards ── */
+.state-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 500px) {
+  .state-strip { grid-template-columns: 1fr; }
+}
+.state-card {
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  border: 1.5px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.state-card.under  { background: var(--under-pale);  border-color: var(--under); }
+.state-card.full   { background: var(--full-pale);   border-color: var(--full); }
+.state-card.over   { background: var(--over-pale);   border-color: var(--over); }
+
+.state-swatch {
+  height: 3px;
+  border-radius: 2px;
+  width: 2.5rem;
+}
+.state-card.under .state-swatch  { background: var(--under); }
+.state-card.full  .state-swatch  { background: var(--full); }
+.state-card.over  .state-swatch  { background: var(--over); }
+
+.state-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.state-card.under .state-label { color: var(--under); }
+.state-card.full  .state-label { color: var(--full); }
+.state-card.over  .state-label { color: var(--over); }
+
+.state-desc {
+  font-size: 0.82rem;
+  color: var(--fg-2);
+  line-height: 1.4;
+}
+
+/* ── SVG diagrams ── */
+.diagrams {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.diagram-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.diagram-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 160px;
+}
+.diagram-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.diagram-item:nth-child(1) .diagram-title { color: var(--under); }
+.diagram-item:nth-child(2) .diagram-title { color: var(--full); }
+.diagram-item:nth-child(3) .diagram-title { color: var(--over); }
+.diagram-desc {
+  font-size: 0.78rem;
+  color: var(--fg-2);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Constraint Grid ── */
+.section-wrap {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.constraint-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.6rem 1.5rem;
+}
+.constraint-item {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.constraint-item:last-child { border-bottom: none; }
+.c-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+.c-body { min-width: 0; }
+.c-name {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 0 0 0.1rem;
+  line-height: 1.2;
+}
+.c-desc {
+  font-size: 0.76rem;
+  color: var(--fg-2);
+  line-height: 1.35;
+}
+
+/* ── Strategy ── */
+.strategy-steps {
+  counter-reset: strat;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.strat-item {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  counter-increment: strat;
+}
+.strat-item:last-child { border-bottom: none; }
+.strat-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent);
+  line-height: 1.45;
+}
+.strat-num::before { content: counter(strat, decimal-leading-zero); }
+.strat-body { min-width: 0; }
+.strat-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 0 0 0.15rem;
+}
+.strat-text {
+  font-size: 0.82rem;
+  color: var(--fg-2);
+  margin: 0;
+}
+
+/* ── Errors ── */
+.error-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.error-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.error-item:last-child { border-bottom: none; }
+@media (max-width: 480px) {
+  .error-item { grid-template-columns: 1fr; }
+}
+.error-col-hd {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+.symptom-hd { color: var(--over); }
+.fix-hd     { color: var(--green); }
+.error-text {
+  font-size: 0.82rem;
+  color: var(--fg-2);
+  line-height: 1.4;
+}
+.error-text strong { color: var(--fg); font-weight: 600; }
+</style>
+
+<p class="eyebrow">Fusion 360 CAD Reference · Lessons 1.3.7 &amp; 1.2.6</p>
+<h1>Sketch Constraints Reference</h1>
+<p class="page-sub">A sketch that isn't fully constrained can move, stretch, or break when you change a dimension. Use this guide while working in Fusion 360.</p>
+
+<!-- COLOR STATE STRIP -->
+<div class="state-strip">
+  <div class="state-card under">
+    <div class="state-swatch"></div>
+    <div class="state-label">Blue — Under-constrained</div>
+    <div class="state-desc">Geometry can still move. Missing constraints or dimensions. Do not extrude yet.</div>
+  </div>
+  <div class="state-card full">
+    <div class="state-swatch"></div>
+    <div class="state-label">Black — Fully constrained</div>
+    <div class="state-desc">Every point is locked. Shape, size, and position are all defined. Ready to extrude.</div>
+  </div>
+  <div class="state-card over">
+    <div class="state-swatch"></div>
+    <div class="state-label">Red — Over-constrained</div>
+    <div class="state-desc">Two constraints are in conflict. Fusion cannot solve it. Remove the conflicting one.</div>
+  </div>
+</div>
+
+<!-- SVG DIAGRAMS -->
+<div class="diagrams">
+  <h2>What they look like</h2>
+  <div class="diagram-row">
+
+    <div class="diagram-item">
+      <p class="diagram-title">Under-constrained</p>
+      <svg viewBox="0 0 130 110" width="130" height="110" aria-label="Under-constrained sketch — blue rectangle that can move">
+        <!-- Grid dots -->
+        <g opacity="0.15" fill="#7095B4">
+          <circle cx="15" cy="15" r="1.5"/><circle cx="35" cy="15" r="1.5"/><circle cx="55" cy="15" r="1.5"/><circle cx="75" cy="15" r="1.5"/><circle cx="95" cy="15" r="1.5"/><circle cx="115" cy="15" r="1.5"/>
+          <circle cx="15" cy="35" r="1.5"/><circle cx="35" cy="35" r="1.5"/><circle cx="55" cy="35" r="1.5"/><circle cx="75" cy="35" r="1.5"/><circle cx="95" cy="35" r="1.5"/><circle cx="115" cy="35" r="1.5"/>
+          <circle cx="15" cy="55" r="1.5"/><circle cx="35" cy="55" r="1.5"/><circle cx="55" cy="55" r="1.5"/><circle cx="75" cy="55" r="1.5"/><circle cx="95" cy="55" r="1.5"/><circle cx="115" cy="55" r="1.5"/>
+          <circle cx="15" cy="75" r="1.5"/><circle cx="35" cy="75" r="1.5"/><circle cx="55" cy="75" r="1.5"/><circle cx="75" cy="75" r="1.5"/><circle cx="95" cy="75" r="1.5"/><circle cx="115" cy="75" r="1.5"/>
+          <circle cx="15" cy="95" r="1.5"/><circle cx="35" cy="95" r="1.5"/><circle cx="55" cy="95" r="1.5"/><circle cx="75" cy="95" r="1.5"/><circle cx="95" cy="95" r="1.5"/><circle cx="115" cy="95" r="1.5"/>
+        </g>
+        <!-- Blue floating rectangle (no origin, no dimensions) -->
+        <rect x="28" y="25" width="70" height="48" fill="none" stroke="#2A6FD4" stroke-width="2.2" rx="0"/>
+        <!-- Move arrows -->
+        <g stroke="#2A6FD4" stroke-width="1.5" fill="#2A6FD4" opacity="0.6">
+          <line x1="63" y1="8" x2="63" y2="3"/>
+          <polygon points="63,1 61,5 65,5"/>
+          <line x1="63" y1="87" x2="63" y2="92"/>
+          <polygon points="63,94 61,90 65,90"/>
+          <line x1="12" y1="49" x2="7" y2="49"/>
+          <polygon points="5,49 9,47 9,51"/>
+          <line x1="113" y1="49" x2="118" y2="49"/>
+          <polygon points="120,49 116,47 116,51"/>
+        </g>
+        <text x="65" y="106" font-family="IBM Plex Sans, sans-serif" font-size="9" fill="#2A6FD4" text-anchor="middle">Can still move</text>
+      </svg>
+      <p class="diagram-desc">No origin point, no dimensions. The rectangle floats and can be dragged anywhere.</p>
+    </div>
+
+    <div class="diagram-item">
+      <p class="diagram-title">Fully constrained</p>
+      <svg viewBox="0 0 130 110" width="130" height="110" aria-label="Fully constrained sketch — black rectangle with dimensions and origin">
+        <!-- Grid dots -->
+        <g opacity="0.15" fill="#7095B4">
+          <circle cx="15" cy="15" r="1.5"/><circle cx="35" cy="15" r="1.5"/><circle cx="55" cy="15" r="1.5"/><circle cx="75" cy="15" r="1.5"/><circle cx="95" cy="15" r="1.5"/><circle cx="115" cy="15" r="1.5"/>
+          <circle cx="15" cy="35" r="1.5"/><circle cx="35" cy="35" r="1.5"/><circle cx="55" cy="35" r="1.5"/><circle cx="75" cy="35" r="1.5"/><circle cx="95" cy="35" r="1.5"/><circle cx="115" cy="35" r="1.5"/>
+          <circle cx="15" cy="55" r="1.5"/><circle cx="35" cy="55" r="1.5"/><circle cx="55" cy="55" r="1.5"/><circle cx="75" cy="55" r="1.5"/><circle cx="95" cy="55" r="1.5"/><circle cx="115" cy="55" r="1.5"/>
+          <circle cx="15" cy="75" r="1.5"/><circle cx="35" cy="75" r="1.5"/><circle cx="55" cy="75" r="1.5"/><circle cx="75" cy="75" r="1.5"/><circle cx="95" cy="75" r="1.5"/><circle cx="115" cy="75" r="1.5"/>
+          <circle cx="15" cy="95" r="1.5"/><circle cx="35" cy="95" r="1.5"/><circle cx="55" cy="95" r="1.5"/><circle cx="75" cy="95" r="1.5"/><circle cx="95" cy="95" r="1.5"/><circle cx="115" cy="95" r="1.5"/>
+        </g>
+        <!-- Origin marker -->
+        <line x1="15" y1="0" x2="15" y2="100" stroke="#7095B4" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5"/>
+        <line x1="0" y1="75" x2="130" y2="75" stroke="#7095B4" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5"/>
+        <circle cx="15" cy="75" r="3" fill="none" stroke="#2A6FD4" stroke-width="1.5"/>
+        <!-- Black constrained rectangle pinned at origin corner -->
+        <rect x="15" y="27" width="70" height="48" fill="none" stroke="#1A2A3B" stroke-width="2.2"/>
+        <!-- Width dimension -->
+        <line x1="15" y1="85" x2="85" y2="85" stroke="#4C6378" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="50" y="94" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4C6378" text-anchor="middle" font-weight="600">70 mm</text>
+        <!-- Height dimension -->
+        <line x1="96" y1="27" x2="96" y2="75" stroke="#4C6378" stroke-width="1"/>
+        <text x="106" y="53" font-family="IBM Plex Mono, monospace" font-size="9" fill="#4C6378" text-anchor="middle" font-weight="600">48</text>
+        <!-- Lock icon at origin -->
+        <text x="15" y="75" font-size="9" fill="#2A6FD4" text-anchor="middle" dy="-6">⊕</text>
+        <text x="65" y="108" font-family="IBM Plex Sans, sans-serif" font-size="9" fill="#1A6638" text-anchor="middle">Ready to extrude</text>
+      </svg>
+      <p class="diagram-desc">Pinned to origin, dimensions applied. All lines are black — nothing can move.</p>
+    </div>
+
+    <div class="diagram-item">
+      <p class="diagram-title">Over-constrained</p>
+      <svg viewBox="0 0 130 110" width="130" height="110" aria-label="Over-constrained sketch — red rectangle with conflicting constraints">
+        <!-- Grid dots -->
+        <g opacity="0.15" fill="#7095B4">
+          <circle cx="15" cy="15" r="1.5"/><circle cx="35" cy="15" r="1.5"/><circle cx="55" cy="15" r="1.5"/><circle cx="75" cy="15" r="1.5"/><circle cx="95" cy="15" r="1.5"/><circle cx="115" cy="15" r="1.5"/>
+          <circle cx="15" cy="35" r="1.5"/><circle cx="35" cy="35" r="1.5"/><circle cx="55" cy="35" r="1.5"/><circle cx="75" cy="35" r="1.5"/><circle cx="95" cy="35" r="1.5"/><circle cx="115" cy="35" r="1.5"/>
+          <circle cx="15" cy="55" r="1.5"/><circle cx="35" cy="55" r="1.5"/><circle cx="55" cy="55" r="1.5"/><circle cx="75" cy="55" r="1.5"/><circle cx="95" cy="55" r="1.5"/><circle cx="115" cy="55" r="1.5"/>
+          <circle cx="15" cy="75" r="1.5"/><circle cx="35" cy="75" r="1.5"/><circle cx="55" cy="75" r="1.5"/><circle cx="75" cy="75" r="1.5"/><circle cx="95" cy="75" r="1.5"/><circle cx="115" cy="75" r="1.5"/>
+          <circle cx="15" cy="95" r="1.5"/><circle cx="35" cy="95" r="1.5"/><circle cx="55" cy="95" r="1.5"/><circle cx="75" cy="95" r="1.5"/><circle cx="95" cy="95" r="1.5"/><circle cx="115" cy="95" r="1.5"/>
+        </g>
+        <!-- Red conflicted rectangle -->
+        <rect x="18" y="25" width="70" height="48" fill="none" stroke="#C0222A" stroke-width="2.2"/>
+        <!-- Two conflicting dimension lines shown -->
+        <line x1="18" y1="83" x2="88" y2="83" stroke="#C0222A" stroke-width="1" opacity="0.8"/>
+        <text x="53" y="91" font-family="IBM Plex Mono, monospace" font-size="9" fill="#C0222A" text-anchor="middle" font-weight="600">70 mm</text>
+        <line x1="18" y1="88" x2="88" y2="88" stroke="#C0222A" stroke-width="1" stroke-dasharray="2,2" opacity="0.8"/>
+        <text x="53" y="100" font-family="IBM Plex Mono, monospace" font-size="9" fill="#C0222A" text-anchor="middle" font-weight="600">70 mm ✗</text>
+        <!-- Warning X -->
+        <circle cx="100" cy="25" r="8" fill="#C0222A" opacity="0.9"/>
+        <text x="100" y="29" font-size="10" fill="white" text-anchor="middle" font-weight="700">!</text>
+        <text x="65" y="108" font-family="IBM Plex Sans, sans-serif" font-size="9" fill="#C0222A" text-anchor="middle">Delete one dimension</text>
+      </svg>
+      <p class="diagram-desc">Two dimensions on the same feature conflict. Fusion highlights them red. Delete the duplicate.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONSTRAINT TYPES -->
+<div class="section-wrap" style="margin-bottom:1.25rem">
+  <h2>Geometric Constraints (no dimension needed)</h2>
+  <div class="constraint-grid">
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="4" y1="14" x2="24" y2="14" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="4" y1="18" x2="24" y2="18" stroke="var(--rule)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3,2"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Horizontal</div>
+        <div class="c-desc">Forces a line to lie flat. Prevents it from tilting.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="14" y1="4" x2="14" y2="24" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="18" y1="4" x2="18" y2="24" stroke="var(--rule)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3,2"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Vertical</div>
+        <div class="c-desc">Forces a line to be perfectly upright.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <circle cx="14" cy="14" r="3" fill="var(--accent)"/>
+        <line x1="14" y1="4" x2="14" y2="11" stroke="var(--fg-2)" stroke-width="1.5"/>
+        <line x1="14" y1="17" x2="14" y2="24" stroke="var(--fg-2)" stroke-width="1.5"/>
+        <line x1="4" y1="14" x2="11" y2="14" stroke="var(--amber)" stroke-width="1.5"/>
+        <line x1="17" y1="14" x2="24" y2="14" stroke="var(--amber)" stroke-width="1.5"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Coincident</div>
+        <div class="c-desc">Two points snap together. Use this to close gaps in a sketch profile.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="4" y1="22" x2="22" y2="4" stroke="var(--fg-2)" stroke-width="1.5"/>
+        <path d="M 22 4 Q 22 14 14 14" fill="none" stroke="var(--accent)" stroke-width="2"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Tangent</div>
+        <div class="c-desc">A curve meets a line without a corner. Used on arcs and fillets.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="14" y1="4" x2="14" y2="24" stroke="var(--rule)" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <rect x="5" y="10" width="7" height="8" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <rect x="16" y="10" width="7" height="8" fill="none" stroke="var(--accent)" stroke-width="2"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Symmetric</div>
+        <div class="c-desc">Mirrors geometry about a center line. Good for centered features.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="4" y1="12" x2="24" y2="12" stroke="var(--accent)" stroke-width="2"/>
+        <line x1="4" y1="18" x2="24" y2="18" stroke="var(--accent)" stroke-width="2"/>
+        <line x1="10" y1="8" x2="10" y2="22" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2,2"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Parallel</div>
+        <div class="c-desc">Two lines stay the same angle apart. Keeps sides from twisting.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="4" y1="22" x2="24" y2="22" stroke="var(--accent)" stroke-width="2"/>
+        <line x1="14" y1="4" x2="14" y2="22" stroke="var(--accent)" stroke-width="2"/>
+        <rect x="10" y="18" width="4" height="4" fill="none" stroke="var(--fg-2)" stroke-width="1.2"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Perpendicular</div>
+        <div class="c-desc">Two lines are at exactly 90°. The square symbol appears in the corner.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="4" y1="10" x2="14" y2="10" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="14" y1="18" x2="24" y2="18" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="8" y="21" font-size="7" fill="var(--fg-2)" font-weight="600">=</text>
+        <text x="17" y="13" font-size="7" fill="var(--fg-2)" font-weight="600">=</text>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Equal</div>
+        <div class="c-desc">Two lines or curves become the same length. Good for squares.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <circle cx="14" cy="14" r="8" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <circle cx="14" cy="14" r="2" fill="none" stroke="var(--fg-2)" stroke-width="1.5"/>
+        <circle cx="14" cy="14" r="0.8" fill="var(--fg-2)"/>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Concentric</div>
+        <div class="c-desc">Two circles share the same center. Use on holes that must be aligned.</div>
+      </div>
+    </div>
+
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <rect x="4" y="10" width="20" height="9" fill="none" stroke="var(--accent)" stroke-width="2"/>
+        <circle cx="8" cy="14" r="2" fill="var(--accent)" opacity="0.6"/>
+        <line x1="8" y1="9" x2="8" y2="5" stroke="var(--fg-2)" stroke-width="1.2" stroke-dasharray="2,1"/>
+        <text x="14" y="8" font-size="7" fill="var(--fg-2)">Fix</text>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Fix (Ground)</div>
+        <div class="c-desc">Locks a point to its exact position in space. Use on one corner to anchor the whole sketch.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-wrap" style="margin-bottom:1.25rem">
+  <h2>Dimensional Constraints (set a size or distance)</h2>
+  <div class="constraint-grid">
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="4" y1="14" x2="24" y2="14" stroke="var(--fg-2)" stroke-width="1"/>
+        <line x1="4" y1="11" x2="4" y2="17" stroke="var(--fg-2)" stroke-width="1.5"/>
+        <line x1="24" y1="11" x2="24" y2="17" stroke="var(--fg-2)" stroke-width="1.5"/>
+        <text x="14" y="12" font-size="7" fill="var(--accent)" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="600">24 mm</text>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Linear Dimension</div>
+        <div class="c-desc">Sets the length of a line or the distance between two points.</div>
+      </div>
+    </div>
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <circle cx="14" cy="14" r="9" fill="none" stroke="var(--fg-2)" stroke-width="1"/>
+        <line x1="14" y1="14" x2="23" y2="14" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="17" y="12" font-size="6" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-weight="600">R</text>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Radius / Diameter</div>
+        <div class="c-desc">Sets the size of a circle or arc.</div>
+      </div>
+    </div>
+    <div class="constraint-item">
+      <svg class="c-icon" viewBox="0 0 28 28" aria-hidden="true">
+        <line x1="4" y1="22" x2="24" y2="8" stroke="var(--fg-2)" stroke-width="1"/>
+        <line x1="14" y1="22" x2="14" y2="8" stroke="var(--rule)" stroke-width="1" stroke-dasharray="2,2"/>
+        <path d="M 14 18 Q 14 14 18 12" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="18" y="22" font-size="7" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-weight="600">45°</text>
+      </svg>
+      <div class="c-body">
+        <div class="c-name">Angular</div>
+        <div class="c-desc">Sets the angle between two lines. Less common, but useful for angled features.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STRATEGY -->
+<div class="section-wrap" style="margin-bottom:1.25rem">
+  <h2>Constraining Strategy — Anchor First</h2>
+  <div class="strategy-steps">
+    <div class="strat-item">
+      <span class="strat-num"></span>
+      <div class="strat-body">
+        <div class="strat-title">Fix one corner to the origin</div>
+        <div class="strat-text">Right-click a point → Fix, or use a Coincident constraint between your corner and the origin point. This pins your sketch in space. Without this, the whole sketch floats even if all the lines are the right size.</div>
+      </div>
+    </div>
+    <div class="strat-item">
+      <span class="strat-num"></span>
+      <div class="strat-body">
+        <div class="strat-title">Add geometric constraints before dimensions</div>
+        <div class="strat-text">Apply Horizontal, Vertical, Parallel, Perpendicular first. This reduces how many dimensions you need — a rectangle with Horizontal and Vertical constraints only needs width + height, not all four sides.</div>
+      </div>
+    </div>
+    <div class="strat-item">
+      <span class="strat-num"></span>
+      <div class="strat-body">
+        <div class="strat-title">Add dimensions last</div>
+        <div class="strat-text">Use the Sketch Dimension tool (D key) to enter exact sizes. Each click on a blue line adds a constraint. Watch the lines turn black as you go.</div>
+      </div>
+    </div>
+    <div class="strat-item">
+      <span class="strat-num"></span>
+      <div class="strat-body">
+        <div class="strat-title">Check: all lines should be black</div>
+        <div class="strat-text">When there are zero blue lines left, the sketch is fully constrained. Fusion also shows the "Fully Constrained" badge in the bottom status bar. If any blue remains, look for the floating line or point and apply the missing constraint.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMON ERRORS -->
+<div class="section-wrap">
+  <h2>Common Errors and Fixes</h2>
+  <div class="error-list">
+
+    <div class="error-item">
+      <div>
+        <div class="error-col-hd symptom-hd">Symptom</div>
+        <div class="error-text">Sketch still has blue lines even after adding dimensions to every edge.</div>
+      </div>
+      <div>
+        <div class="error-col-hd fix-hd">Fix</div>
+        <div class="error-text"><strong>The sketch isn't anchored to the origin.</strong> Fix one point or add a Coincident constraint between a corner and the origin. The shape is defined but its position in space is not.</div>
+      </div>
+    </div>
+
+    <div class="error-item">
+      <div>
+        <div class="error-col-hd symptom-hd">Symptom</div>
+        <div class="error-text">Fusion shows a red constraint conflict badge. Lines turn red.</div>
+      </div>
+      <div>
+        <div class="error-col-hd fix-hd">Fix</div>
+        <div class="error-text"><strong>Delete the last constraint you added</strong> — it conflicts with an existing one. Ctrl+Z to undo, or right-click the red dimension and delete it.</div>
+      </div>
+    </div>
+
+    <div class="error-item">
+      <div>
+        <div class="error-col-hd symptom-hd">Symptom</div>
+        <div class="error-text">Two lines look connected at a corner but the sketch won't close. Extrude won't work.</div>
+      </div>
+      <div>
+        <div class="error-col-hd fix-hd">Fix</div>
+        <div class="error-text"><strong>The endpoints only look coincident — they're not.</strong> Zoom in and apply a Coincident constraint between the two endpoints. A tiny gap breaks a closed profile.</div>
+      </div>
+    </div>
+
+    <div class="error-item">
+      <div>
+        <div class="error-col-hd symptom-hd">Symptom</div>
+        <div class="error-text">Changing one dimension makes the whole sketch distort in unexpected ways.</div>
+      </div>
+      <div>
+        <div class="error-col-hd fix-hd">Fix</div>
+        <div class="error-text"><strong>Add Horizontal and Vertical constraints to the sides first.</strong> Without them, lines can rotate when dimensions change. Constrain geometry before dimensions.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
